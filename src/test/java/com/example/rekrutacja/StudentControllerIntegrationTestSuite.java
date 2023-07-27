@@ -30,17 +30,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class StudentControllerIntegrationTestSuite {
-
     @Autowired
     private MockMvc mockMvc;
-
     @Autowired
     private StudentService studentService;
 
     @BeforeEach
     public void setup() {
-        Student student1 = new Student(1L,"Ania","Kania","ania@kania");
-        Student student2 = new Student(2L,"Hania","Bania","hania@bania");
+        Student student1 = new Student(1L, "Ania", "Kania", "ania@kania");
+        Student student2 = new Student(2L, "Hania", "Bania", "hania@bania");
         studentService.saveStudent(student1);
         studentService.saveStudent(student2);
     }
@@ -90,7 +88,7 @@ public class StudentControllerIntegrationTestSuite {
     @Test
     public void shouldCreateStudent() throws Exception {
         // Given
-        StudentDto newStudentDto = new StudentDto(3L, "Marek", "Skok","marek@skok");
+        StudentDto newStudentDto = new StudentDto(3L, "Marek", "Skok", "marek@skok");
 
         // When&then
         mockMvc.perform(post("/v1/students")
@@ -103,13 +101,13 @@ public class StudentControllerIntegrationTestSuite {
         Student addedStudent = allStudents.get(2);
         assertEquals("Marek", addedStudent.getFirstName());
         assertEquals("Skok", addedStudent.getLastName());
-        assertEquals("marek@skok",addedStudent.getEmail());
+        assertEquals("marek@skok", addedStudent.getEmail());
     }
 
     @Test
     public void shouldUpdateStudent() throws Exception, StudentNotFoundException {
         // Given
-        StudentDto updatedStudentDto = new StudentDto(1L, "Janusz", "Pies","janusz@pies");
+        StudentDto updatedStudentDto = new StudentDto(1L, "Janusz", "Pies", "janusz@pies");
 
         // When&Then
         mockMvc.perform(put("/v1/students")
@@ -120,7 +118,7 @@ public class StudentControllerIntegrationTestSuite {
         Student updatedStudent = studentService.getStudent(1L);
         assertEquals("Janusz", updatedStudent.getFirstName());
         assertEquals("Pies", updatedStudent.getLastName());
-        assertEquals("janusz@pies",updatedStudent.getEmail());
+        assertEquals("janusz@pies", updatedStudent.getEmail());
     }
 
     @Test

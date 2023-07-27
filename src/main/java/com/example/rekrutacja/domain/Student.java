@@ -1,6 +1,5 @@
 package com.example.rekrutacja.domain;
 
-import com.example.rekrutacja.domain.Mark;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -65,13 +64,13 @@ public class Student {
         return marksList;
     }
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(
-//            name = "JOIN_STUDENT_LECTURER",
-//            joinColumns = {@JoinColumn(name = "STUDENT_ID", referencedColumnName = "STUDENT_ID")},
-//            inverseJoinColumns = {@JoinColumn(name = "LECTURER_ID", referencedColumnName = "LECTURER_ID")}
-//    )
-//    public List<Lecturer> getLecturersList() {
-//        return lecturersList;
-//    }
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "JOIN_STUDENT_LECTURER",
+            joinColumns = {@JoinColumn(name = "STUDENT_ID", referencedColumnName = "STUDENT_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "LECTURER_ID", referencedColumnName = "LECTURER_ID")}
+    )
+    public List<Lecturer> getLecturersList() {
+        return lecturersList;
+    }
 }

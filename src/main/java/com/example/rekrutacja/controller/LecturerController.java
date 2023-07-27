@@ -16,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("v1/lecturers")
 public class LecturerController {
-
     private final LecturerService service;
     private final LecturerMapper lecturerMapper;
 
@@ -30,8 +29,7 @@ public class LecturerController {
     public ResponseEntity<LecturerDto> getLecturer(@PathVariable Long lecturerId) {
         try {
             return ResponseEntity.ok(lecturerMapper.mapToLecturerDto(service.getLecturer(lecturerId)));
-        }
-        catch (LecturerNotFoundException exception){
+        } catch (LecturerNotFoundException exception) {
             return ResponseEntity.internalServerError().build();
         }
     }

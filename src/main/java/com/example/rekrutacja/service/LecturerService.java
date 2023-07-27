@@ -1,11 +1,8 @@
 package com.example.rekrutacja.service;
 
 import com.example.rekrutacja.domain.Lecturer;
-import com.example.rekrutacja.domain.Student;
 import com.example.rekrutacja.exception.LecturerNotFoundException;
-import com.example.rekrutacja.exception.StudentNotFoundException;
 import com.example.rekrutacja.repository.LecturerRepository;
-import com.example.rekrutacja.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

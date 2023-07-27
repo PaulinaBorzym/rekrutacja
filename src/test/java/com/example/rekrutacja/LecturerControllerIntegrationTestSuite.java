@@ -1,4 +1,5 @@
 package com.example.rekrutacja;
+
 import com.example.rekrutacja.domain.Lecturer;
 import com.example.rekrutacja.dto.LecturerDto;
 import com.example.rekrutacja.exception.LecturerNotFoundException;
@@ -26,17 +27,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class LecturerControllerIntegrationTestSuite {
-
     @Autowired
     private MockMvc mockMvc;
-
     @Autowired
     private LecturerService lecturerService;
 
     @BeforeEach
     public void setup() {
-        Lecturer lecturer1 = new Lecturer(1L,"Adam","Kot","adam@kot","Java");
-        Lecturer lecturer2 = new Lecturer(2L,"Artur","Smok","artur@smok","Python");
+        Lecturer lecturer1 = new Lecturer(1L, "Adam", "Kot", "adam@kot", "Java");
+        Lecturer lecturer2 = new Lecturer(2L, "Artur", "Smok", "artur@smok", "Python");
         lecturerService.saveLecturer(lecturer1);
         lecturerService.saveLecturer(lecturer2);
     }
@@ -89,9 +88,10 @@ public class LecturerControllerIntegrationTestSuite {
     @Test
     public void shouldCreateLecturer() throws Exception {
         // Given
-        LecturerDto newLecturerDto = new LecturerDto(3L, "Marek", "Skok","marek@skok","C++");
+        LecturerDto newLecturerDto = new LecturerDto(3L, "Marek", "Skok",
+                "marek@skok", "C++");
 
-        // When&then
+        // When&Then
         mockMvc.perform(post("/v1/lecturers")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(newLecturerDto)))
@@ -102,14 +102,15 @@ public class LecturerControllerIntegrationTestSuite {
         Lecturer addedLecturer = allLecturers.get(2);
         assertEquals("Marek", addedLecturer.getFirstName());
         assertEquals("Skok", addedLecturer.getLastName());
-        assertEquals("marek@skok",addedLecturer.getEmail());
-        assertEquals("C++",addedLecturer.getSubject());
+        assertEquals("marek@skok", addedLecturer.getEmail());
+        assertEquals("C++", addedLecturer.getSubject());
     }
 
     @Test
     public void shouldUpdateLecturer() throws Exception, LecturerNotFoundException {
         // Given
-        LecturerDto updatedLecturerDto = new LecturerDto(1L, "Janusz", "Pies","janusz@pies","Java");
+        LecturerDto updatedLecturerDto = new LecturerDto(1L, "Janusz", "Pies",
+                "janusz@pies", "Java");
 
         // When&Then
         mockMvc.perform(put("/v1/lecturers")
@@ -120,14 +121,13 @@ public class LecturerControllerIntegrationTestSuite {
         Lecturer updatedLecturer = lecturerService.getLecturer(1L);
         assertEquals("Janusz", updatedLecturer.getFirstName());
         assertEquals("Pies", updatedLecturer.getLastName());
-        assertEquals("janusz@pies",updatedLecturer.getEmail());
-        assertEquals("Java",updatedLecturer.getSubject());
+        assertEquals("janusz@pies", updatedLecturer.getEmail());
+        assertEquals("Java", updatedLecturer.getSubject());
     }
 
     @Test
     public void shouldDeleteLecturer() throws Exception {
 
-        // Given&When&Then
         mockMvc.perform(delete("/v1/lecturers/{lecturerId}", 2L))
                 .andExpect(status().isOk());
 

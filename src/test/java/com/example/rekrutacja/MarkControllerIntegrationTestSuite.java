@@ -32,14 +32,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class MarkControllerIntegrationTestSuite {
     @Autowired
     private MockMvc mockMvc;
-
     @Autowired
     private MarkService markService;
 
     @BeforeEach
     public void setup() {
-        Mark mark1 = new Mark(1L,"Java",4);
-        Mark mark2 = new Mark(2L,"Java",3);
+        Mark mark1 = new Mark(1L, "Java", 4);
+        Mark mark2 = new Mark(2L, "Java", 3);
         markService.saveMark(mark1);
         markService.saveMark(mark2);
     }

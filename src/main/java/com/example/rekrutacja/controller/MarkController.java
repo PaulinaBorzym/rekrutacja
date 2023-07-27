@@ -1,6 +1,5 @@
 package com.example.rekrutacja.controller;
 
-
 import com.example.rekrutacja.domain.Mark;
 import com.example.rekrutacja.dto.MarkDto;
 import com.example.rekrutacja.exception.MarkNotFoundException;
@@ -17,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("v1/marks")
 public class MarkController {
-
     private final MarkService service;
     private final MarkMapper markMapper;
 
@@ -31,7 +29,7 @@ public class MarkController {
     public ResponseEntity<MarkDto> getMark(@PathVariable Long markId) {
         try {
             return ResponseEntity.ok(markMapper.mapToMarkDto(service.getMark(markId)));
-        } catch (MarkNotFoundException exception){
+        } catch (MarkNotFoundException exception) {
             return ResponseEntity.internalServerError().build();
         }
     }

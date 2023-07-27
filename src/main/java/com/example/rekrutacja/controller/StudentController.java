@@ -16,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("v1/students")
 public class StudentController {
-
     private final StudentService service;
     private final StudentMapper studentMapper;
 

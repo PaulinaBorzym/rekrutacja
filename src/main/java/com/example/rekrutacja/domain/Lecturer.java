@@ -72,8 +72,8 @@ public class Lecturer {
         return marksList;
     }
 
-//    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "lecturersList")
-//    public List<Student> getStudentsList() {
-//        return studentsList;
-//    }
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "lecturersList")
+    public List<Student> getStudentsList() {
+        return studentsList;
+    }
 }
