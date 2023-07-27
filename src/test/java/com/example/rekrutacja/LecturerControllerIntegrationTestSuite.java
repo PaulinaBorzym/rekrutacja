@@ -2,7 +2,6 @@ package com.example.rekrutacja;
 import com.example.rekrutacja.domain.Lecturer;
 import com.example.rekrutacja.dto.LecturerDto;
 import com.example.rekrutacja.exception.LecturerNotFoundException;
-import com.example.rekrutacja.mapper.LecturerMapper;
 import com.example.rekrutacja.service.LecturerService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;

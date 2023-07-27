@@ -28,8 +28,12 @@ public class MarkController {
     }
 
     @GetMapping(value = "{markId}")
-    public ResponseEntity<MarkDto> getMark(@PathVariable Long markId) throws MarkNotFoundException {
-        return ResponseEntity.ok(markMapper.mapToMarkDto(service.getMark(markId)));
+    public ResponseEntity<MarkDto> getMark(@PathVariable Long markId) {
+        try {
+            return ResponseEntity.ok(markMapper.mapToMarkDto(service.getMark(markId)));
+        } catch (MarkNotFoundException exception){
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

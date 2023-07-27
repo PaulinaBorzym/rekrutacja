@@ -27,8 +27,12 @@ public class StudentController {
     }
 
     @GetMapping(value = "{studentId}")
-    public ResponseEntity<StudentDto> getStudent(@PathVariable Long studentId) throws StudentNotFoundException {
-        return ResponseEntity.ok(studentMapper.mapToStudentDto(service.getStudent(studentId)));
+    public ResponseEntity<StudentDto> getStudent(@PathVariable Long studentId) {
+        try {
+            return ResponseEntity.ok(studentMapper.mapToStudentDto(service.getStudent(studentId)));
+        } catch (StudentNotFoundException exception) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
