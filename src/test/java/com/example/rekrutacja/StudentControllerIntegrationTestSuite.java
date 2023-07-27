@@ -15,7 +15,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,7 +44,6 @@ public class StudentControllerIntegrationTestSuite {
 
     @Test
     public void shouldGetStudents() throws Exception {
-
         mockMvc.perform(get("/v1/students"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -123,8 +121,6 @@ public class StudentControllerIntegrationTestSuite {
 
     @Test
     public void shouldDeleteStudent() throws Exception {
-
-        // Given&When&Then
         mockMvc.perform(delete("/v1/students/{studentId}", 2L))
                 .andExpect(status().isOk());
 

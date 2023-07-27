@@ -45,7 +45,6 @@ public class MarkControllerIntegrationTestSuite {
 
     @Test
     public void shouldGetMarks() throws Exception {
-
         mockMvc.perform(get("/v1/marks"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -118,7 +117,6 @@ public class MarkControllerIntegrationTestSuite {
 
     @Test
     public void shouldDeleteMark() throws Exception {
-
         mockMvc.perform(delete("/v1/marks/{markId}", 2L))
                 .andExpect(status().isOk());
 

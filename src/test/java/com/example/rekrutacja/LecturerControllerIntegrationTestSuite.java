@@ -42,7 +42,6 @@ public class LecturerControllerIntegrationTestSuite {
 
     @Test
     public void shouldGetLecturers() throws Exception {
-
         mockMvc.perform(get("/v1/lecturers"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -127,7 +126,6 @@ public class LecturerControllerIntegrationTestSuite {
 
     @Test
     public void shouldDeleteLecturer() throws Exception {
-
         mockMvc.perform(delete("/v1/lecturers/{lecturerId}", 2L))
                 .andExpect(status().isOk());
 
